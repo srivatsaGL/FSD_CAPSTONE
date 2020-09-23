@@ -1,0 +1,45 @@
+ <div class="d-flex align-items-center p-3 px-sm-4">
+    <h5 class="my-0 mr-md-auto font-weight-bold">
+        <app-header></app-header>
+    </h5>
+    <nav class="navbar navbar-expand-lg">
+      <div class="alert alert-light" role="alert">
+        <a class="alert-link" [routerLink]="''">Home</a>
+      </div>
+     <!-- <div class="alert alert-light" role="alert">
+        <a class="alert-link" [routerLink]="'/about'">About Us</a>
+      </div> -->
+
+      <div class="alert alert-light" role="alert" *ngIf="!loggedin">
+      <a  class="alert-link" [routerLink]="'/login'">Login</a>
+      </div>
+      <div class="alert alert-light" role="alert" *ngIf="!loggedin">
+        <a class="alert-link"   [routerLink]="'/register'">New User</a>
+      </div>
+      <div class="alert alert-light" role="alert" *ngIf="loggedin">
+        <a class="alert-link"  [routerLink]="'/summary'">My Order</a>
+      </div>
+      <div class="btn-group" *ngIf="loggedin">
+       <!--> <button type="button" [routerLink]="'/foodapp'" class="alert alert-light alert-link">{{currentUser.name | uppercase}}</button> -->
+        <button type="button" class="alert alert-light dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         <b> {{currentUser.name | uppercase}} </b><span class="sr-only">Toggle Dropdown</span>
+        </button>
+
+        <div class="dropdown-menu" *ngIf="isAdmin">
+          <a class="dropdown-item" [routerLink]="'/addrestaurant'">Add Restaurant</a>
+          <a class="dropdown-item" [routerLink]="'/addfood'">Add Food</a>
+          <a class="dropdown-item" [routerLink]="'/editrestaurant'">Edit Restaurant</a>
+         <!--> <a class="dropdown-item" [routerLink]="'/profile'">Profile</a> -->
+          <div class="dropdown-divider"></div>
+          <button type="button" (click)="logOut()" class="btn btn-success">Logout</button>
+        </div>
+        
+        <div class="dropdown-menu" *ngIf="!isAdmin">
+          <a class="dropdown-item" [routerLink]="'/summary'">My Order</a>
+          <a class="dropdown-item" [routerLink]="'/profile'">Checkout</a>
+          <div class="dropdown-divider"></div>
+          <button type="button" (click)="logOut()" class="btn btn-success">Logout</button>
+        </div>
+        </div>
+      </nav>
+  </div>

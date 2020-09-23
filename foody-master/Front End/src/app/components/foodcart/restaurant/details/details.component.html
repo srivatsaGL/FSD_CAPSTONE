@@ -1,0 +1,54 @@
+
+    <div class="jumbotron">
+      <div class="row">
+        <div class="col">
+          <picture >
+            <img width="500" height="500" class="img-thumbnail" [src]="restaurant.image"/>
+          </picture>
+        </div>
+        <div class="col">
+          <h1 class="display-1">
+              {{restaurant.name}}
+          </h1>
+          <p class="lead">{{restaurant.description}}.</p>
+          <p class="lead">{{restaurant.speciality}}.</p>
+          <hr class="my-4">
+          <p class="lead">
+            <strong>
+              Address:
+            </strong>
+            {{restaurant.address}}
+          </p>
+        </div>
+      </div>     
+    </div>
+    <div class="row container">
+     <!--> <div class="col-5">
+        <button class="nav-link dropdown-toggle btn btn-info" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Sort
+        </button>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <button class="dropdown-item btn btn-info" (click)="sortByPrice()">Sort By Price(Low to High)</button>
+            <button class="dropdown-item btn btn-info" (click)="sortByPriceDsc()">Sort By Price(High to Low)</button>
+            <button class="dropdown-item btn btn-info" (click)="sortByPrice()">Sort By Name(Z to A)</button>
+            <button class="dropdown-item btn btn-info" (click)="sortByPriceDsc()">Sort By Name(A to Z)</button>
+          </div>
+      </div> -->
+    <div class="col">
+      <div class="form-group" style="float: right;">
+        <input id="name" [(ngModel)]="name" placeholder="Search the Dish"/>
+      </div>
+      </div>
+   </div>
+    <div class="container-xl">
+      <div class="row">
+        <div class="col">
+        <div *ngFor="let resfood of food | filter:name">
+            <app-menu [foodItem]="resfood"></app-menu>
+        </div>
+        </div>
+        <div class="col" style="float: right;">
+          <app-cart></app-cart>
+        </div>
+      </div>
+    </div>

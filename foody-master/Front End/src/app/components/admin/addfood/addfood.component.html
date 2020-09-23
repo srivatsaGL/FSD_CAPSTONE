@@ -1,0 +1,98 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <div>
+                <table class="table table-hover">
+                  <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Price</th>
+                      <!-->  <th scope="col">ingredients</th> -->
+                        <th scope="col">Image</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of allfoods">
+                            <th scope="row" >
+                                    {{item.fid}}
+                            </th>
+                            <td scope="col">
+                                    {{item.name}}
+                            </td>
+                            <td scope="col">
+                                    {{item.price}}
+                            </td>
+                            <td scope="col">
+                                    {{item.ingredients | slice: 0:50}}
+                            </td>
+                            <td scope="col">
+                                <img class="bd-placeholder-img card-img-top p-2" width="15" height="100" [src]="item.image"/> 
+                            </td>
+                          </tr>
+                      </tbody>
+                  </table>
+                <hr/>  
+              </div>
+        </div>
+        <div class="col">
+            <div class="guest-form-card card">
+                <div class="card-header text-center">
+                    <h2>Add Food</h2>
+                </div>
+                <div class="card-body">
+                    <form #loginForm="ngForm" (ngSubmit)="addFood()">
+
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input id="name" name="name" class="form-control" [ngClass]="{'is-invalid': name.touched && name.invalid}" #name="ngModel" [(ngModel)]="food.name" required />
+                            <span class="invalid-feedback">Name can't be blank</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="price">Price</label>
+                            <input id="price" name="price" class="form-control" #price="ngModel" [(ngModel)]="food.price" required />
+                        </div>
+
+                     <!-->   <div class="form-group">
+                            <label for="ingredients">Ingredients</label>
+                            <textarea id="ingredients" name="ingredients" class="form-control" [ngClass]="{'is-invalid': ingredients.touched && ingredients.invalid}" #ingredients="ngModel" [(ngModel)]="food.ingredients" required ></textarea>
+                            <span class="invalid-feedback">Ingredients can't be blank</span>
+                        </div> -->
+
+                        <div class="form-group">
+                            <label for="image">Image Url</label>
+                            <input id="image" name="image" class="form-control" [ngClass]="{'is-invalid': image.touched && image.invalid}" #image="ngModel" [(ngModel)]="food.image" required />
+                            <span class="invalid-feedback">Image can't be blank</span>
+                        </div>
+
+                        <button class="btn btn-primary btn-block" [disabled]="loginForm.invalid">Add Food</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+
+            <div class="form-group">
+                <label for="food">Food List</label>
+                <select [(ngModel)]="food" class="form-control form-control-lg">
+                    <option *ngFor="let food of allfoods" [ngValue]="food">
+                        ({{food.fid}}) {{food.name | uppercase}}
+                    </option>   
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="restaurant">Restaurant</label>
+                <select [(ngModel)]="restaurant" class="form-control form-control-lg">
+                    <option *ngFor="let restaurant of restaurants" [ngValue]="restaurant">
+                        ({{restaurant.rid}}) {{restaurant.name | uppercase}}
+                    </option>   
+                </select>
+            </div>
+            <button class="btn btn-primary" (click)="updateFood()">Update Restaurant</button>
+    
+        
+        </div>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+<div class="card">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img [src]="foodItem.image" class="card-img" [alt]="foodItem.name">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{foodItem.name | uppercase}}</h5>
+        <p class="card-text">{{foodItem.ingredients}}.</p>
+        <p class="card-text text-muted">{{foodItem.price | currency: 'INR'}}</p>
+        <div *ngIf="!loggedin">
+          <a [routerLink]="'/login'" class="btn btn-outline-warning">Login to order</a>
+        </div>
+        <a *ngIf="foodItem.qty ===0 && loggedin" (click)="handleAddToCart()" class="btn btn-outline-warning">Add to Cart</a>
+        <div *ngIf="foodItem.qty >0 && loggedin">
+          <input class="btn btn-secondary" type="button" value="-" (click)="removeFromCart()">
+           {{foodItem.qty}}
+           <input class="btn btn-secondary" type="button" value="+" (click)="handleAddToCart()" >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

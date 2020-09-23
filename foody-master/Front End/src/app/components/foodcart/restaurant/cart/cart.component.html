@@ -1,0 +1,13 @@
+<div *ngIf="foods.length ===0 && isloggedin" class="alert alert-info">Your Cart is Empty</div>
+<div *ngIf = "!isloggedin" class="alert alert-info">You are not logged in</div>
+<ul *ngIf="foods.length > 0 && isloggedin" class="list-group">
+    <li class="list-group-item" *ngFor="let item of foods">
+        <app-cart-item [cartItem]="item"></app-cart-item>
+    </li>
+    <li class="list-group-item active">
+        <strong>Cart Total</strong> {{cartTotal | currency:'INR'}}
+    </li>
+    <li class="list-group-item">
+        <a [routerLink]="'/order'" class="btn btn-warning btn-lg btn-block">Place Order</a>
+    </li>
+</ul>

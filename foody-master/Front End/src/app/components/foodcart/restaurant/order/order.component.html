@@ -1,0 +1,86 @@
+<div class="card">
+    <h5 class="card-header">{{currentUser.name | uppercase}}</h5>
+    <div class="card-body">
+      <h5 class="card-title">Welcome {{currentUser.name | uppercase}} ({{currentUser.username}}) to foodapp!</h5>
+          
+      <div>
+          <table class="table table-hover">
+            <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Food Name</th>
+                  <th scope="col">Restaurant Name</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let item of foods">
+                      <th scope="row" >
+                              {{item.fid}}
+                      </th>
+                      <td>
+                              {{item.name}}
+                      </td>
+                      <td>
+                              {{item.restaurant.name}}
+                      </td>
+                      <td>
+                              {{item.qty}}
+                      </td>
+                      <td>
+                              {{item.price}}
+                      </td>
+                    </tr>
+                </tbody>
+            </table>
+          <hr/>  
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <div class="guest-form-card card">
+            <div class="card-header text-center">
+                <h2>Enter Details Here</h2>
+            </div>
+            <div class="card-body">
+                <form #loginForm="ngForm" (ngSubmit)="placeOrder()">
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <textarea id="address" name="address" class="form-control" [ngClass]="{'is-invalid': address.touched && address.invalid}" #address="ngModel" [(ngModel)]="order.address" required ></textarea>
+                        <span class="invalid-feedback">Username can't be blank</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">email</label>
+                        <input id="email" name="email" class="form-control" [ngClass]="{'is-invalid': email.touched && email.invalid}" #email="ngModel" [(ngModel)]="order.email" required />
+                        <span class="invalid-feedback">Username can't be blank</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pincode">pincode</label>
+                        <input id="pincode" name="pincode" class="form-control" [ngClass]="{'is-invalid': pincode.touched && pincode.invalid}" #pincode="ngModel" [(ngModel)]="order.pincode" required />
+                        <span class="invalid-feedback">Username can't be blank</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="card">Debit Card/Credit Card</label>
+                        <input type="number" id="card" name="card" class="form-control" #card="ngModel" [(ngModel)]="order.card" required />
+                        <span class="invalid-feedback">Username can't be blank</span>
+                    </div>
+                
+                    <div class="form-group">
+                        <label for="confirmCard">Confirm Card Number</label>
+                        <input type="number" type="password" id="confirmCard" name="confirmCard" class="form-control"/>
+                        <span class="invalid-feedback">Password can't be blank</span>
+                    </div>
+
+                    <button class="btn btn-primary btn-block" [disabled]="loginForm.invalid">Proceed to Payment</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

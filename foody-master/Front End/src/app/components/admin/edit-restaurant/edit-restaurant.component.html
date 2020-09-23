@@ -1,0 +1,59 @@
+<div class="col">
+    <div class="guest-form-card card">
+        <div class="card-header text-center">
+            <h2>Edit Restaurant</h2>
+        </div>
+        <div class="card-body">
+            <select [(ngModel)]="restaurant">
+                <option *ngFor="let restaurant of restaurants" [ngValue]="restaurant">
+                    ({{restaurant.rid}}) {{restaurant.name | uppercase}}
+                </option>   
+            </select>
+            <form #loginForm="ngForm" (ngSubmit)="updateRestaurant()">
+
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input id="name" name="name" class="form-control" [ngClass]="{'is-invalid': name.touched && name.invalid}" #name="ngModel" [(ngModel)]="restaurant.name" required />
+                    <span class="invalid-feedback">Name can't be blank</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <textarea id="address" name="address" class="form-control" [ngClass]="{'is-invalid': address.touched && address.invalid}" #address="ngModel" [(ngModel)]="restaurant.address" required ></textarea>
+                    <span class="invalid-feedback">Address can't be blank</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <input id="city" name="city" class="form-control" [ngClass]="{'is-invalid': city.touched && city.invalid}" #city="ngModel" [(ngModel)]="restaurant.city" required />
+                    <span class="invalid-feedback">City can't be blank</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="state">State</label>
+                    <input id="state" name="state" class="form-control" [ngClass]="{'is-invalid': state.touched && state.invalid}" #state="ngModel" [(ngModel)]="restaurant.state" required />
+                    <span class="invalid-feedback">State can't be blank</span>
+                </div>
+
+               <!--> <div class="form-group">
+                    <label for="speciality">Speciality</label>
+                    <textarea id="speciality" name="speciality" class="form-control" [ngClass]="{'is-invalid': speciality.touched && speciality.invalid}" #speciality="ngModel" [(ngModel)]="restaurant.speciality" required ></textarea>
+                    <span class="invalid-feedback">Address can't be blank</span>
+                </div>
+            
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" class="form-control" [ngClass]="{'is-invalid': description.touched && description.invalid}" #description="ngModel" [(ngModel)]="restaurant.description" required ></textarea>
+                    <span class="invalid-feedback">Description can't be blank</span>
+                </div> -->
+
+                <div class="form-group">
+                    <label for="image">Image Url</label>
+                    <input id="image" name="image" class="form-control" [ngClass]="{'is-invalid': image.touched && image.invalid}" #image="ngModel" [(ngModel)]="restaurant.image" required />
+                    <span class="invalid-feedback">Image can't be blank</span>
+                </div>
+
+                <button class="btn btn-primary btn-block" [disabled]="loginForm.invalid">Update Restaurant</button>
+            </form>
+        </div>
+    </div>

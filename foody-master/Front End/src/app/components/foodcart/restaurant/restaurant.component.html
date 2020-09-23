@@ -1,0 +1,41 @@
+<div class="row container-xl">
+   <!--> <div class="col-5">
+      <button class="nav-link dropdown-toggle btn btn-info" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Sort
+      </button>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <button class="dropdown-item btn btn-info" (click)="sortByName()">Sort By Name(A to Z)</button>
+          <button class="dropdown-item btn btn-info" (click)="sortByNameDsc()">Sort By Name(Z to A)</button>
+          <button class="dropdown-item btn btn-info" (click)="sortByCity()">Sort By City(A to Z)</button>
+          <button class="dropdown-item btn btn-info" (click)="sortByCityDsc()">Sort By City(Z to A)</button>
+          <button class="dropdown-item btn btn-info" (click)="sortByState()">Sort By State(A to A)</button>
+          <button class="dropdown-item btn btn-info" (click)="sortByStateDsc()">Sort By State(Z to A)</button>
+        </div>
+    </div> -->
+  <div class="col">
+    <div class="form-group" style="float: right;">
+      <input id="name" [(ngModel)]="name" placeholder="Search the Restaurant"/>
+    </div>
+    </div>
+ </div>
+<div class="row">
+    <div class="col-md-3" *ngFor="let restaurant of restaurants | filter:name">
+        <div class="card mb-4 shadow-sm">
+            <img class="bd-placeholder-img card-img-top p-2" width="200" height="250" [src]="restaurant.image"/> 
+            <div class="card-header">
+              <h5 class="card-title">{{restaurant.name}}</h5>
+            </div>
+            <div class="card-body">
+              <!-->  <p class="card-text">
+                    <strong>Speciality</strong>: {{restaurant.speciality | slice: 0:40}}...
+                </p>
+                <p class="card-text">
+                    <strong>City</strong>: {{restaurant.city}}</p>
+                    <p class="card-text">
+                    <strong>State</strong>: {{restaurant.state}}
+                </p> -->
+              <a [routerLink]="['/details',restaurant.rid]" class="btn btn-primary stretched-link">View Menu</a>
+              </div>
+        </div>
+    </div>
+</div>
